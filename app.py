@@ -28,15 +28,15 @@ if st.button("Construir histogramas"):
         fig1, ax = plt.subplots()
         sns.histplot(df["odometer"], bins=50, kde=False, ax=ax)
         ax.set_title("Histograma: odometer")
-        st.pyplot(fig)
+        st.pyplot(fig1)
 
 
     # Histograma price
     if "price" in df.columns:
         fig2, ax = plt.subplots()
         sns.histplot(df["price"], bins=50, kde=False, ax=ax)
-    ax.set_title("Histograma:price")
-    st.pyplot(fig2)
+        ax.set_title("Histograma:price")
+        st.pyplot(fig2)
 
 # Botón para scatterplots (genera 2 scatterplots)
 if st.button("Construir gráficos de dispersión"):
@@ -50,9 +50,9 @@ if st.button("Construir gráficos de dispersión"):
 
     # Scatter model_year vs price
     if "model_year" in df.columns and "price" in df.columns:
-        fig4 = ax = plt.subplots()
+        fig4, = ax = plt.subplots()
         sns.scatterplot(data=df, x="model_year", y="price", ax=ax)
-        ax.set_title("Model Year vs Proce")
+        ax.set_title("Model Year vs Price")
         st.pyplot(fig4)
 
 # Un segundo encabezado extra para cumplir con "al menos dos encabezados"
