@@ -4,7 +4,7 @@ Proyecto creación  aplicación web.
 # Proyecto 7 - información sobre anuncios de carros
 
 Breve descripción:
-App con Streamlit basada en una exploración superficial, el dataset contiene anuncios de carros. Informacón sobre la cual se ejecutaron histogramas y gráficos de dispersión interactivos con Plotly.
+App con Streamlit basada en una exploración superficial, el dataset contiene anuncios de carros. Informacón sobre la cual se ejecutaron histogramas y gráficos de barras y dispersión en seaborn.
 
 Funcionalidad: 
 1. Permite ver información general del dataset colo los  nombres de las columnas : price, model_year, model,condition,cylinders, fuel, odometer,transmission,type, paint_color,is_4wd,date_posted y  days_listed
