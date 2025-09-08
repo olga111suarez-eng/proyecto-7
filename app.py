@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
+import matplotlib.pyplot as plt
 
 @st.cache_data
 def load_data(path="vehicles_us.csv"):
@@ -17,45 +17,46 @@ if st.checkbox("Mostrar primeras 10 filas del dataset"):
     st.write(df.head(10))
 
 # Encabezado 2
-st.header("Visualizaciones interactivas")
+st.header("Visualizaciones seaborn")
 
 # Botón para histogramas (genera 2 histogramas)
 if st.button("Construir histogramas"):
     st.write("Creando histogramas...")
     # Histograma odometer
     if "odometer" in df.columns:
-        fig1 = px.histogram(df, x="odometer", nbins=50, title="Histograma: odometer")
-        st.plotly_chart(fig1, use_container_width=True)
-    else:
-        st.write("No existe la columna 'odometer' en este dataset.")
+        fig1, ax = plt.subplots()
+        sns.histplot(df["odometer"], bins=50, kde=False, ax=ax)
+        ax.set_title("Histograma: odometer")
+        st.pyplot(fig)
+
 
     # Histograma price
     if "price" in df.columns:
-        fig2 = px.histogram(df, x="price", nbins=50, title="Histograma: price")
-        st.plotly_chart(fig2, use_container_width=True)
-    else:
-        st.write("No existe la columna 'price' en este dataset.")
+        fig2, ax = plt.subplots()
+        sns.histplot(df["price"], bins=50, kde=False, ax=ax)
+    ax.set_title("Histograma:price")
+    st.pyplot(fig2)
 
 # Botón para scatterplots (genera 2 scatterplots)
 if st.button("Construir gráficos de dispersión"):
     st.write("Creando gráficos de dispersión...")
     # Scatter odometer vs price
     if "odometer" in df.columns and "price" in df.columns:
-        fig3 = px.scatter(df, x="odometer", y="price", title="Odometer vs Price", trendline="ols")
-        st.plotly_chart(fig3, use_container_width=True)
-    else:
-        st.write("Faltan columnas para Odometer vs Price.")
+        fig3, ax = plt.subplots()
+        sns.scatterplot(data=df, x="odometer", y= "price", ax=ax)
+        ax.set_title("Odometer vs Price")
+        st.pyplot(fig3)
 
     # Scatter model_year vs price
     if "model_year" in df.columns and "price" in df.columns:
-        fig4 = px.scatter(df, x="model_year", y="price", title="Model Year vs Price")
-        st.plotly_chart(fig4, use_container_width=True)
-    else:
-        st.write("No hay columna 'model_year' para el segundo scatter.")
+        fig4 = ax = plt.subplots()
+        sns.scatterplot(data=df, x="model_year", y="price", ax=ax)
+        ax.set_title("Model Year vs Proce")
+        st.pyplot(fig4)
 
 # Un segundo encabezado extra para cumplir con "al menos dos encabezados"
 st.header("Análisis adicional")
-st.write("Usa los botones anteriores para construir las visualizaciones. Puedes ampliar la app añadiendo filtros por marca, año, precio, etc.")
+st.write("Usa los botones anteriores para construir las visualizaciones.")
         
 
             
