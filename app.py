@@ -50,7 +50,7 @@ if st.button("Construir gráficos de dispersión"):
 
     # Scatter model_year vs price
     if "model_year" in df.columns and "price" in df.columns:
-        fig4, = ax = plt.subplots()
+        fig4, ax = plt.subplots()
         sns.scatterplot(data=df, x="model_year", y="price", ax=ax)
         ax.set_title("Model Year vs Price")
         st.pyplot(fig4)
